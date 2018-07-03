@@ -1,8 +1,19 @@
-<h1>Element <%= @element.name %></h1>
-<div class='row'>
-  <% if @element.avatar.attached? %>
-    <%= image_tag @element.avatar.variant(resize: "100x100") %>
-  <% end %>
-</div>
+<div class="container">
 
-<p><%=link_to 'Back', admin_elements_path %> </p>
+  <p id="notice"><%= notice %></p>
+
+  <div class="row justify-content-center">
+    <h3> Element Name: <%= @element.name %> </h3><br>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+  	<%if @element.avatar.attached? %>
+  	   <%= image_tag @element.avatar, size: "100x100"%>
+  	<% end %>
+  </div>
+
+  <div class="row justify-content-center">
+  	<a class="btn btn-secondary btn-sm mr-1" href="<%=admin_elements_path%>" role ="button">Back</a>
+  	<a class="btn btn-warning btn-sm mr-1" href="<%=edit_admin_element_path%>" role ="button">Edit</a>
+  </div>
+</div> 

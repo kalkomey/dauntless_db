@@ -1,7 +1,7 @@
 <%= form_with(model: [ :admin, weapon ], local: true) do |form| %>
   <% if weapon.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(weapon.errors.count, "error") %> prohibited this weapon from being saved:</h2>
+    <div id='error_explanation'>
+      <h2><%= pluralize(weapon.errors.count, 'error') %> prohibited this weapon from being saved:</h2>
       <ul>
         <%weapon.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,75 +10,68 @@
     </div>
   <% end %>
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <%= form.label(:name, 'Weapon Name: ') %>
-      <%= form.text_field(:name) %> 
+  <div class='container'>
+
+    <div class='form-group'>
+      <%= form.label :name, 'Weapon Name:' %>
+      <%= form.text_field :name, class:'form-control', placeholder: 'Enter Name' %>
     </div>
 
-    <div class="row justify-content-center">
-      <%= form.label "Weapon Type: " %>
-      <%= form.select :weapon_type, Weapon.weapon_types.map { |k,v| [k.humanize.titleize, k]}, {prompt: '--select weapon--'}, { class: "custom-select" } %>
+    <div class='form-group'>
+      <%= form.label :weapon_type, 'Weapon Type:' %>
+      <%= form.select :weapon_type, Weapon.weapon_types.map { |k,v| [k.humanize.titleize, k]}, {prompt: '--select weapon--'}, { class:'custom-select' } %>
     </div>
 
-    <div style="height: 20px;"></div>
 
-    <div class="row justify-content-center">
-      <%= form.label(:base_power, 'Base Power: ') %>
-      <%= form.number_field(:base_power) %>
+    <div class='form-group'>
+      <%= form.label :base_power, 'Base Power:' %>
+      <%= form.number_field :base_power, class:'form-control', placeholder: '0' %>
+
+   <div class='form-group'>
+      <%= form.label(:max_power, 'Max Power:') %>
+      <%= form.number_field :max_power, class:'form-control', placeholder: 0 %>
     </div>
 
-    <div class="row justify-content-center">
-      <%= form.label(:max_power, 'Max Power: ') %>
-      <%= form.number_field(:max_power) %>
+    <div class='form-group'>
+      <%= form.label 'Element:' %>
+      <%= form.collection_select :elemental_power_id, Element.all.order(:name), :id, :name, {prompt: '--select element--'},{ class:'custom-select' } %>
     </div>
 
-    <div class="row justify-content-center">
-      <%= form.label 'Element: ' %>
-      <%= form.collection_select :elemental_power_id, Element.all.order(:name), :id, :name, {prompt: '--select element--'},{ class: "custom-select" } %> 
+    <div class = 'form-group'>
+      <%= form.label :elemental_power_amount, 'Elemental Power:' %>
+      <%= form.number_field :elemental_power_amount, class:'form-control', placeholder: '0'%>
     </div>
 
-    <div class = "row justify-content-center">
-      <%= form.label(:elemental_power_amount, 'Elemental Power: ') %>
-      <%= form.number_field(:elemental_power_amount) %>
+    <div class = 'form-group'>
+      <%= form.label 'Perk:' %>
+      <%= form.collection_select :perk_id, Perk.all.order(:name), :id, :name, {prompt: '--select perk--'},{ class:'custom-select' } %>
     </div>
 
-    <div class = "row justify-content-center">
-      <%= form.label 'Perk: ' %>
-      <%= form.collection_select :perk_id, Perk.all.order(:name), :id, :name, {prompt: '--select perk--'},{ class: "custom-select" } %>
+    <div class = 'form-group'>
+      <%= form.label :perk_amount, 'Perk Amount:' %>
+      <%= form.number_field :perk_amount, class:'form-control', placeholder: 0 %>
     </div>
 
-    <div class = "row justify-content-center">
-      <%= form.label(:perk_amount, 'Perk Amount: ') %>
-      <%= form.number_field(:perk_amount) %>
+    <div class='form-group'>
+      <%= form.label :cell_slot_type_one, 'Cell Slot 1:' %>
+      <%= form.select :cell_slot_type_one, Weapon.cell_slot_type_ones.map { |k,v| [k.capitalize, k]}, {prompt: '--select attribute--'}, { class:'custom-select' } %>
     </div>
 
-    <div class="row justify-content-center">
-      <%= form.label "Cell Slot 1: " %>
-      <%= form.select :cell_slot_type_one, Weapon.cell_slot_type_ones.map { |k,v| [k.capitalize, k]}, {prompt: '--select attribute--'}, { class: "custom-select" } %>
+    <div class='form-group'>
+      <%= form.label :cell_slot_type_two, 'Cell Slot 2:' %>
+      <%= form.select :cell_slot_type_two, Weapon.cell_slot_type_twos.map { |k,v| [k.capitalize, k]}, {prompt: '--select attribute--'}, { class:'custom-select' } %>
     </div>
 
-    <div class="row justify-content-center">
-      <%= form.label "Cell Slot 2: " %>
-      <%= form.select :cell_slot_type_two, Weapon.cell_slot_type_twos.map { |k,v| [k.capitalize, k]}, {prompt: '--select attribute--'}, { class: "custom-select" } %>
+    <div class = 'form-group'>
+      <%= form.label :unique_effect, 'Unique Effect:' %>
+      <%= form.text_field :unique_effect, class:'form-control', placeholder: 'None' %>
     </div>
 
-    <div style="height: 20px;"></div>
-
-    <div class = "row justify-content-center">
-      <%= form.label(:unique_effect, 'Unique Effect: ') %>
-      <%= form.text_field(:unique_effect) %>
-    </div>
-
-    <div style="height: 20px;"></div>
-
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-
-    <div class="row justify-content-center"> 
-      <%= link_to 'Back',admin_weapons_path %>
+    <div class='row justify-content-center mt-2'> 
+      <a class='btn btn-secondary btn-sm mr-1' href='<%=admin_weapons_path%>' role ='button'>Back</a>
+      <button type='submit' class='btn btn-primary btn-sm'>Submit</button>
     </div>
     
   </div>
+
 <%end%>

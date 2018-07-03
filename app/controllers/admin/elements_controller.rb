@@ -6,40 +6,51 @@ module Admin
     end
 
     def show
-     @element = Element.find(params[:id])
+      set_element
     end
 
     def new
+      @element = Element.new
     end
 
     def edit
-      @element = Element.find(params[:id])
+      set_element
     end
 
-    def destroy
-      @element = Element.find(params[:id])
-      @element.destroy
+    # def destroy
+    #   @element = Element.find(params[:id])
+    #   @element.destroy
 
-      redirect_to admin_elements_path
-    end
+    #   redirect_to admin_elements_path
+    # end
 
     def update
-      @element = Element.find(params[:id])
+      set_element
       if @element.update(admin_elements_params)
-        redirect_to admin_elements_path
+        redirect_to admin_element_path(@element), notice: 'Element was succesfully updated'
+      else
+        render :edit
       end
+
     end
 
     def create
       @element = Element.new(admin_elements_params)
-      @element.save
-      redirect_to admin_elements_path
+      if @element.save
+        redirect_to admin_elements_path, notice: 'Element was successfully updated'
+      else 
+        render :new
+      end
     end
 
     private
 
+    def set_element 
+      @element = Element.find(params[:id])
+    end
+      
     def admin_elements_params
-      params.require(:element).permit(:name, :avatar)
+      params.fetch(:element, {}).permit(:name, :avatar)
     end
 
   end

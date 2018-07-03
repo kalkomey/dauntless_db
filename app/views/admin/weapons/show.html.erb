@@ -47,5 +47,7 @@
     <p> <%= @weapon.unique_effect %> <p>
   <% end %>
 
-  <%= link_to 'Edit', edit_admin_weapon_path(@weapon) %> | <%= link_to 'Back', admin_weapons_path %> 
+  <a class="btn btn-secondary btn-sm mr-1" href="<%=admin_weapons_path%>" role ="button">Back</a>
+  <a class="btn btn-warning btn-sm mr-1" href="<%=edit_admin_weapon_path%>" role ="button">Edit</a>
+
 </div>

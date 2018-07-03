@@ -1,13 +1,9 @@
-<h1>New Element?</h1>
-<%= form_with scope: :element, url: admin_elements_path, local: true do |f| %>
-  <p>Name please:
-    <% f.label :name %>
-    <%= f.text_field :name %>
-  </p>
-  <div class='row'>
-    <%= f.file_field :avatar %>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>Create New Element</h1> <br>
   </div>
-  <p>
-    <%=f.submit%>
-  </p>
-<% end %>
+
+  <div class="row justify-content-center">
+    <%= render 'form', element: @element%>
+  </div>
+</div>

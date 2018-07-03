@@ -1,29 +1,16 @@
-<h1>Welcome to the (Admin) Element Page</h1>
-<p>Here is the list of Elements</p>
-<p>
-  <%= link_to 'New', new_admin_element_path %>
-</p>
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-  </tr>
-  <% @elements.each do |a| %>
-    <tr>
-      <td>
-        <%= a.name %>
-      </td>
-      <td>
-        <% if a.avatar.attached? %>
-          <%= image_tag a.avatar.variant(resize: "100x100") %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to 'Show', admin_element_path(a) %>
-      </td>
-      <td>
-        <%= link_to 'Edit', edit_admin_element_path(a) %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>Admin List of Elements</h1>
+  </div>
+
+  <div class="row justify-content-center">
+    <h4> <%= link_to "Create New Element", new_admin_element_path %> </h4>
+  </div>
+
+
+  <% @elements.each do |element| %>
+    <div class="row justify-content-center">
+      <p> <%= link_to element.name, admin_element_path(element)%> </p>
+    </div>
+  <% end %> 
+</div>
