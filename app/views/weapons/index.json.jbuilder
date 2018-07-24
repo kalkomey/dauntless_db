@@ -3,6 +3,7 @@ json.array! @weapons do |weapon|
   json.name weapon.name
   json.weapon_type weapon.weapon_type
   json.base_power weapon.base_power
+  json.max_power weapon.max_power
   json.elemental_power weapon.elemental_power
   json.elemental_power_amount weapon.elemental_power_amount
   json.perk weapon.perk

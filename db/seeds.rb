@@ -65,6 +65,7 @@ Weapon.weapon_types.each do |wtype, _|
         perk: Perk.all.sample,
         perk_amount: rand(2) + 1,
         base_power: rand(30) + 10,
+        max_power: rand(40) + 40,
         cell_slot_type_one: Armor.cell_slot_types.keys.sample,
         cell_slot_type_two: Armor.cell_slot_types.keys.sample,
       }

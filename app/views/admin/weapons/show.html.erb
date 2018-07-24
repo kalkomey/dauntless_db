@@ -42,7 +42,7 @@
     <p> <%= @weapon.cell_slot_type_two %> <p>
   <% end %>
 
-  <% if @weapon.unique_effect.length > 0 %>
+  <% if @weapon.unique_effect? %>
     <h5>Unique Effect: </h5>
     <p> <%= @weapon.unique_effect %> <p>
   <% end %>
